@@ -142,6 +142,11 @@ http://localhost:8888/lab?token=<a bunch of digits>
 ```
 Open a browser with the URL (most terminals will allow CTRL-Click to open it)
 
+You will not need to do the manual installation below and can use the
+above command to start the environment in the future
+
+# Manual Installation
+
 ## Setting up the Jupyter environment
 To ensure that the python packages installed by AMPAV do not interfere 
 with system or user-installed packages, it's best to create a venv for
