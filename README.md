@@ -2,7 +2,7 @@
 A POC set of notebooks to do transcription things using the AMPAV POC 
 tools
 
-## Installing Python 3.12
+## Installing Python 3.12 and Git
 AMPAV is tested with Python 3.12, but it may work with newer versions.
 
 ### Linux
@@ -11,6 +11,10 @@ installed by running
 
 ```
 python3.12 --version
+```
+and 
+```
+git --version
 ```
 
 If it says the command isn't found you'll need to install it using one of the
@@ -23,6 +27,7 @@ options below.
 | Fedora 43, 44 | python3.12 |
 | RHEL 8, 9     | python3.12 | Including RockyLinux or AlmaLinux
 | RHEL 10       | python3    | Including RockyLinux or AlmaLinux
+| any           | git        |
 
 Install using `yum` or `dnf` as appropriate
 
@@ -31,12 +36,45 @@ Install using `yum` or `dnf` as appropriate
 | Version      | Package    | Notes
 |--------------|------------|-------
 | Ubuntu 24.04 | python3.12 |
+| any          | git        |
 
+Install using `apt install` as appropriate
 
 ### Windows Native
 
-Download the installer from https://www.python.org/downloads/latest/python3.12/
-???
+NOTE: At this time ampav.parakeet will not run on the Windows Native install
+
+Open a PowerShell window and run:
+
+```
+winget install Python.Python.3.12
+```
+
+It may ask you to agree to licensing terms, so answer Y.
+
+You will also need git so we can install it as well:
+
+```
+winget install Git.Git
+```
+
+It will likely prompt for Adminstrator mode.
+
+We will also need to allow scripts to run
+
+```
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+```
+
+And the Microsoft Visual C++ Redistributable runtime
+
+```
+winget install -e --id Microsoft.VCRedist.2015+.x64
+```
+Again, this will require administrator privs.
+
+
+After the install is complete close the window 
 
 ### Windows Subsystem for Linux (WSL)
 
@@ -90,25 +128,15 @@ by running the WSL Settings tool.
 
 ### Mac
 
-TBD
-
-## Cloning this repository onto your workstation
-
-### Linux, WSL
-You can clone this repository by running:
-
-```
-git clone https://github.com/AMPAV/transcription-notebooks.git
-```
-
-
-### Windows
-
-### Mac
-
 (According to AI -- I don't have a Mac to test this on)
 
-Open a terminal and run
+You can use `brew` to install Python 3.12.  Open a terminal and run
+
+```
+brew install python@3.12
+```
+
+and for git
 
 ```
 git --version
@@ -121,6 +149,14 @@ above should display the git version number.
 
 Running the `git` command in the Linux, WSL section above should work.
 
+## Cloning this repository onto your workstation
+
+Regardless of the environment, this command will clone this repository and
+create a directory for it:
+
+```
+git clone https://github.com/AMPAV/transcription-notebooks.git
+```
 
 
 ## Starting the Jupyter Lab Environment (Automated)
@@ -163,12 +199,18 @@ earlier.
 Create the virtual envrionment, activate it, and install jupyterlab into it.
 ```
 python3.12 -mvenv .venv
-. .venv/bin/activate
+source .venv/bin/activate
 pip install jupyterlab
 ```
 
 ### Windows
-TBD
+Create the virtual envrionment, activate it, and install jupyterlab into it.
+
+```
+python -mvenv .venv
+.venv\scripts\activate
+pip install jupyterlab
+```
 
 
 ## Activating the Virtual Environment 
@@ -178,15 +220,15 @@ the packages and programs that have been set up in that environment become
 the defaults.  To activate the environment you must be in the directory
 where the .venv directory has been set up
 
-* Linux, Mac, WSL: `. .venv/bin/activate`
-* Windows: `.venv/scripts/activate.bat`
+* Linux, Mac, WSL: `source .venv/bin/activate`
+* Windows: `.venv\scripts\activate`
 
-And the prompt (at least on Linux) will have `(.venv)` displayed.
+And the prompt will have `(.venv)` displayed.
 
 You can leave the environment by running:
-* Linux, Mac, WSL: `deactivate`
-* Windows: ???
-
+```
+deactivate
+```
 
 
 ## Starting the Jupyter environment
