@@ -38,7 +38,7 @@ Install using `yum` or `dnf` as appropriate
 Download the installer from https://www.python.org/downloads/latest/python3.12/
 ???
 
-### Windows Subsystem for Linux
+### Windows Subsystem for Linux (WSL)
 
 Open PowerShell in Administrator mode and run 
 
@@ -82,13 +82,19 @@ NOTE:  If you prefer an RPM-based distribution rather than Ubuntu, replace
 
 and follow the instructions for RPM-based distributions
 
+#### Memory Requirements
+This has been tested on a Windows 11 machine with 12GB of RAM.  Make sure the
+WSL Virtual Machine has at least 6GB of RAM allocated to it.  You can check this
+by running the WSL Settings tool.
+
+
 ### Mac
 
 TBD
 
 ## Cloning this repository onto your workstation
 
-### Linux
+### Linux, WSL
 You can clone this repository by running:
 
 ```
@@ -100,6 +106,41 @@ git clone https://github.com/AMPAV/transcription-notebooks.git
 
 ### Mac
 
+(According to AI -- I don't have a Mac to test this on)
+
+Open a terminal and run
+
+```
+git --version
+```
+
+If git is already installed it should print out the version.  If it isn't
+it should open a dialog that will prompt you to install it.  Pressing
+the Install button should do the install.  Afterward running the command
+above should display the git version number.
+
+Running the `git` command in the Linux, WSL section above should work.
+
+
+
+## Starting the Jupyter Lab Environment (Automated)
+
+On Linux, WSL, and Mac you can run the `start_juptyer_lab.sh` script to
+set up the environment and start the lab.  From within the 
+`transcription-notebooks` directory, run
+
+```
+./start_jupyter_lab.sh
+```
+
+In most cases it will open a web browser connected to the jupyter lab server
+but if it does not, in the logs written while starting up, there should be a
+link to a url like:
+
+```
+http://localhost:8888/lab?token=<a bunch of digits>
+```
+
 
 ## Setting up the Jupyter environment
 To ensure that the python packages installed by AMPAV do not interfere 
@@ -110,22 +151,10 @@ to that environment and they will not interfere with anything in any other
 environment.  Additionally, any command line tools that were installed will
 be available.
 
-"Activating" the environment consists of going to the directory that contains
-the virtual environment and running:
-* Linux, Mac: `. .venv/bin/activate`
-* Windows: `.venv/scripts/activate.bat`
+Change directory to the `transcription-notebooks` directory that you cloned 
+earlier.
 
-And the prompt (at least on Linux) will have `(.venv)` displayed.
-
-You can leave the environment by running:
-* Linux, Mac: `deactivate`
-* Windows: ???
-
-Regardless of the operating system, change directory to the 
-`transcription-notebooks` directory that you cloned earlier.
-
-
-### Linux, Mac
+### Linux, Mac, WSL
 Create the virtual envrionment, activate it, and install jupyterlab into it.
 ```
 python3.12 -mvenv .venv
@@ -135,6 +164,25 @@ pip install jupyterlab
 
 ### Windows
 TBD
+
+
+## Activating the Virtual Environment 
+
+When you Activate the virtual environment it will set up the environment so
+the packages and programs that have been set up in that environment become
+the defaults.  To activate the environment you must be in the directory
+where the .venv directory has been set up
+
+* Linux, Mac, WSL: `. .venv/bin/activate`
+* Windows: `.venv/scripts/activate.bat`
+
+And the prompt (at least on Linux) will have `(.venv)` displayed.
+
+You can leave the environment by running:
+* Linux, Mac, WSL: `deactivate`
+* Windows: ???
+
+
 
 ## Starting the Jupyter environment
 If you are not in the virtual environment, activate it as described above.
