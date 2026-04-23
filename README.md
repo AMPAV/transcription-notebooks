@@ -140,7 +140,7 @@ link to a url like:
 ```
 http://localhost:8888/lab?token=<a bunch of digits>
 ```
-
+Open a browser with the URL (most terminals will allow CTRL-Click to open it)
 
 ## Setting up the Jupyter environment
 To ensure that the python packages installed by AMPAV do not interfere 
